@@ -64,6 +64,13 @@
             "label": "t:settings_schema.colors.settings.button_background.label",
             "default": "#121212"
           },
+          
+          {
+            "type": "color",
+            "id": "accent",
+            "label": "t:settings_schema.colors.settings.accent.label",
+            "default": "#0C5DDF"
+        },
           {
             "type": "color",
             "id": "button_label",

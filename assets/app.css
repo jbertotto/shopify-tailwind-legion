@@ -475,40 +475,157 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-backdrop-sepia: ;
 }
 
-.twcss-container {
-  width: 100%;
+.tw-absolute {
+  position: absolute;
 }
 
-@media (min-width: 320px) {
-  .twcss-container {
-    max-width: 320px;
-  }
+.tw-relative {
+  position: relative;
+}
+
+.tw-inset-0 {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
+.-tw-mr-6 {
+  margin-right: -1.5rem;
+}
+
+.tw-flex {
+  display: flex;
+}
+
+.tw-inline-flex {
+  display: inline-flex;
+}
+
+.tw-grid {
+  display: grid;
+}
+
+.tw-hidden {
+  display: none;
+}
+
+.tw-h-32 {
+  height: 8rem;
+}
+
+.tw-h-10 {
+  height: 2.5rem;
+}
+
+.tw-h-8 {
+  height: 2rem;
+}
+
+.tw-w-8 {
+  width: 2rem;
+}
+
+.tw-grid-cols-\[1fr_auto_1fr\] {
+  grid-template-columns: 1fr auto 1fr;
+}
+
+.tw-grid-rows-1 {
+  grid-template-rows: repeat(1, minmax(0, 1fr));
+}
+
+.tw-place-items-center {
+  place-items: center;
+}
+
+.tw-items-center {
+  align-items: center;
+}
+
+.tw-justify-end {
+  justify-content: flex-end;
+}
+
+.tw-gap-1 {
+  gap: 0.25rem;
+}
+
+.tw-rounded-full {
+  border-radius: 9999px;
+}
+
+.tw-stroke-current {
+  stroke: currentColor;
+}
+
+.tw-stroke-1 {
+  stroke-width: 1;
+}
+
+.tw-object-right-top {
+  -o-object-position: right top;
+  object-position: right top;
+}
+
+.tw-px-1\.5 {
+  padding-left: 0.375rem;
+  padding-right: 0.375rem;
+}
+
+.tw-py-0\.5 {
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+}
+
+.tw-px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+.tw-py-0 {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.tw-text-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.tw-text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.tw-font-semibold {
+  font-weight: 600;
+}
+
+.tw-leading-4 {
+  line-height: 1rem;
+}
+
+.hover\:tw-scale-105:hover {
+  --tw-scale-x: 1.05;
+  --tw-scale-y: 1.05;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+    rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+    scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.hover\:tw-text-red-600:hover {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
 }
 
 @media (min-width: 750px) {
-  .twcss-container {
-    max-width: 750px;
+  .md\:tw-block {
+    display: block;
   }
 }
 
 @media (min-width: 990px) {
-  .twcss-container {
-    max-width: 990px;
+  .lg\:tw-flex {
+    display: flex;
   }
-}
-
-@media (min-width: 1440px) {
-  .twcss-container {
-    max-width: 1440px;
-  }
-}
-
-@media (min-width: 1920px) {
-  .twcss-container {
-    max-width: 1920px;
-  }
-}
-
-.twcss-block {
-  display: block !important;
 }
