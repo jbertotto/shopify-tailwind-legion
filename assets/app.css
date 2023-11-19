@@ -475,6 +475,40 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-backdrop-sepia: ;
 }
 
+.tw-container {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .tw-container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .tw-container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .tw-container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .tw-container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .tw-container {
+    max-width: 1536px;
+  }
+}
+
 .tw-absolute {
   position: absolute;
 }
@@ -488,6 +522,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   right: 0px;
   bottom: 0px;
   left: 0px;
+}
+
+.tw-mx-0 {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.tw-my-auto {
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .-tw-mr-6 {
@@ -546,8 +590,16 @@ Ensure the default browser behavior of the `hidden` attribute.
   justify-content: flex-end;
 }
 
+.tw-justify-center {
+  justify-content: center;
+}
+
 .tw-gap-1 {
   gap: 0.25rem;
+}
+
+.tw-gap-4 {
+  gap: 1rem;
 }
 
 .tw-rounded-full {
@@ -565,6 +617,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 .tw-object-right-top {
   -o-object-position: right top;
   object-position: right top;
+}
+
+.tw-p-4 {
+  padding: 1rem;
 }
 
 .tw-px-1\.5 {
@@ -587,6 +643,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding-bottom: 0px;
 }
 
+.tw-align-middle {
+  vertical-align: middle;
+}
+
 .tw-text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -601,30 +661,39 @@ Ensure the default browser behavior of the `hidden` attribute.
   font-weight: 600;
 }
 
+.tw-font-extrabold {
+  font-weight: 800;
+}
+
 .tw-leading-4 {
   line-height: 1rem;
 }
 
-.hover\:tw-scale-105:hover {
-  --tw-scale-x: 1.05;
-  --tw-scale-y: 1.05;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y))
-    rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
-    scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+.tw-transition {
+  transition-property: color, background-color, border-color, fill, stroke,
+    opacity, box-shadow, transform, filter, -webkit-text-decoration-color,
+    -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+    backdrop-filter;
+  transition-property: color, background-color, border-color,
+    text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
+    backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
 
-.hover\:tw-text-red-600:hover {
-  --tw-text-opacity: 1;
-  color: rgb(220 38 38 / var(--tw-text-opacity));
-}
-
-@media (min-width: 750px) {
+@media (min-width: 768px) {
   .md\:tw-block {
     display: block;
   }
 }
 
-@media (min-width: 990px) {
+@media (min-width: 1024px) {
+  .lg\:tw-block {
+    display: block;
+  }
+
   .lg\:tw-flex {
     display: flex;
   }

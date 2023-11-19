@@ -19,7 +19,6 @@
 <noscript>{{ 'component-cart-items.css' | asset_url | stylesheet_tag }}</noscript>
 
 <style>
-
   header-drawer {
     justify-self: start;
     margin-left: -1.2rem;
@@ -130,7 +129,7 @@
   endfor
 -%}
 
-<div class='header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}'>
+<div class='tw-flex tw-h-32 tw-justify-center color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %} tw-mx-0 tw-my-auto tw-p-4  '>
   {%- liquid
     assign social_links = false
     assign localization_forms = false
@@ -142,7 +141,7 @@
       assign localization_forms = true
     endif
   -%}
-  <header class='tw-h-32 tw-grid tw-grid-cols-[1fr_auto_1fr] tw-grid-rows-1 tw-items-center container page'>
+  <header class=' tw-grid tw-grid-cols-[1fr_auto_1fr] tw-grid-rows-1 tw-items-center tw-container '>
     {%- render 'header-drawer' -%}
 
     {%- if request.page_type == 'index' -%}
@@ -178,7 +177,7 @@
 
     {%- render 'header-dropdown-menu' %}
 
-    <div class='tw-flex tw-gap-1 tw-justify-end'>
+    <div class='tw-flex tw-gap-1 tw-justify-end '>
       {% # Search Icon %}
 
       {% render 'header-search',
