@@ -1,6 +1,6 @@
 <section
   id="MainProduct-{{ section.id }}"
-  class="page-width section-{{ section.id }}-padding"
+  class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
   data-section="{{ section.id }}"
 >
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
@@ -8,7 +8,6 @@
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
   {{ 'component-slider.css' | asset_url | stylesheet_tag }}
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
-  {{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
   {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
   {%- if product.quantity_price_breaks_configured? -%}
     {{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
@@ -62,8 +61,8 @@
   {%- endif -%}
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
-
-  <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
+  <div class="page-width">
+    <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
     <div class="grid__item product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
       {% render 'product-media-gallery', variant_images: variant_images %}
     </div>
@@ -92,6 +91,7 @@
                 <h1>{{ product.title | escape }}</h1>
                 <a href="{{ product.url }}" class="product__title">
                   <h2 class="h1">
+
                     {{ product.title | escape }}
                   </h2>
                 </a>
@@ -178,6 +178,12 @@
                   {{ product.description }}
                 </div>
               {%- endif -%}
+              {%- when 'short_description' -%}
+                {%- if product.metafields.custom.short_description != blank -%}
+                  <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
+                    {{ product.metafields.custom.short_description }}
+                  </div>
+                {%- endif -%}
             {%- when 'sku' -%}
               <p
                 class="product__sku no-js-hidden{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
@@ -185,10 +191,14 @@
                 role="status"
                 {{ block.shopify_attributes }}
               >
-                <span class="visually-hidden">{{ 'products.product.sku' | t }}:</span> {{- product.selected_or_first_available_variant.sku -}}
+                <span class="visually-hidden">{{ 'products.product.sku' | t }}:</span>SKU: {{- product.selected_or_first_available_variant.sku -}}
               </p>
             {%- when 'custom_liquid' -%}
               {{ block.settings.custom_liquid }}
+            {%- when 'aurek_besh' -%}
+              <h2  id="animated-text" class="tw-aurek tw-text-sm tw-opacity-25 scramble-text">
+                {{ product.metafields.custom.character }}
+              </h2>
             {%- when 'collapsible_tab' -%}
               <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
                 <details id="Details-{{ block.id }}-{{ section.id }}">
@@ -220,19 +230,7 @@
                 <label class="quantity__label form__label" for="Quantity-{{ section.id }}">
                   {{ 'products.product.quantity.label' | t }}
                   <span class="quantity__rules-cart no-js-hidden{% if cart_qty == 0 %} hidden{% endif %}">
-                    <span class="loading-overlay hidden">
-                      <span class="loading-overlay__spinner">
-                        <svg
-                          aria-hidden="true"
-                          focusable="false"
-                          class="spinner"
-                          viewBox="0 0 66 66"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <circle class="path" fill="none" stroke-width="6" cx="33" cy="33" r="30"></circle>
-                        </svg>
-                      </span>
-                    </span>
+                    {%- render 'loading-spinner' -%}
                     <span>({{- 'products.product.quantity.in_cart_html' | t: quantity: cart_qty -}})</span>
                   </span>
                 </label>
@@ -429,6 +427,8 @@
                 {% liquid
                   assign rating_decimal = 0
                   assign decimal = product.metafields.reviews.rating.value.rating | modulo: 1
+                  assign inteiro = product.metafields.reviews.rating.value.rating | floor
+                  assign plus_one = inteiro | plus: 1
                   if decimal >= 0.3 and decimal <= 0.7
                     assign rating_decimal = 0.5
                   elsif decimal > 0.7
@@ -444,7 +444,56 @@
                     aria-hidden="true"
                     class="rating-star"
                     style="--rating: {{ product.metafields.reviews.rating.value.rating | floor }}; --rating-max: {{ product.metafields.reviews.rating.value.scale_max }}; --rating-decimal: {{ rating_decimal }};"
-                  ></span>
+                  >
+                    <svg style="width: 0; height: 0;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                      <defs>
+ 
+                          <linearGradient id="half" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:{{ product.metafields.custom.color }};stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:{{ product.metafields.custom.color }};stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:hsl({{ product.metafields.custom.color.value.hue }},100%,10%);stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:hsl({{ product.metafields.custom.color.value.hue }},100%,10%);stop-opacity:1" />
+                          </linearGradient>
+ 
+
+                          <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="kyber">
+                            <path d="M407.7,307.3L294.3,130.5l-10.4-2.1l-33.6-62.6L112,11.4L92.3,138.2l94,244.6l129.7,116l70.2-16.3l33.6-34.2L407.7,307.3z
+                                M114.7,163.1l65.1,67.8l3.8,6.4l-48.8-21.9L114.7,163.1z M124.3,116.7l-1.3-78.5L163.8,93l18.6,45.1L124.3,116.7z M119.6,127.8
+                               l67.3,24.7l-5,63.2L107.2,138L119.6,127.8z M197.7,143.7L174.3,87L138,38.3l78.8,43.3l23.8,87l-41.1-23.5l0.1-0.7L197.7,143.7z
+                                M227.4,73.8l-26.3-14.4l30.7,12L227.4,73.8z M112.4,118.2l-5.6,4.6l5.1-32.8L112.4,118.2z M299.9,423.2l74.2,49.8l-52.5,12.2
+                               L299.9,423.2z M304.3,472.3l-63.5-56.8l-34.7-140.3l50.6,85l26.1,50.4L304.3,472.3z M292.9,404l-18.4-35.4l71.1,27.7l26.8,61.2
+                               L292.9,404z M348.7,384.6L266,352.4l-73.2-123.2l5.7-70.9l48.1,27.5L394,339.5L348.7,384.6z M276,139l10.9,2.2L396,311.3l1.2,14.2
+                               L255.6,178l-25.2-92.2l13.2-7.1L276,139z M140.9,231.3l47.2,21.2l36.8,148.7l-28.5-25.5L140.9,231.3z M388.2,463.4l-30.9-70.4
+                               l42.1-41.9l7.9,92.8L388.2,463.4z"/>
+                               </symbol>
+
+                               <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" id="kyber-fill">
+                                <polygon points="407.7,307.3 294.3,130.5 283.9,128.4 250.3,65.7 112,11.4 92.3,138.2 186.3,382.8 316,498.8 386.2,482.5 
+                                  419.8,448.3 "/>
+                                   </symbol>
+
+
+                        </defs>
+                    </svg>
+                    {% for i in (1..5) %}
+                      {% if inteiro  >=i %}
+                        <svg class="c-star active" width="32" height="32" viewBox="0 0 512 512">
+                          <use xlink:href="#kyber-fill" fill="{{ product.metafields.custom.color }}" ></use>
+                          <use xlink:href="#kyber" style="fill:hsl({{ product.metafields.custom.color.value.hue }},100%,5%);" ></use>
+                        </svg>
+                      {% elsif i==plus_one and decimal >= 0.5 %}
+                      <svg class="c-star active"width="32" height="32" viewBox="0 0 512 512">
+                        <use xlink:href="#kyber-fill" fill=url("#half")></use>
+                        <use xlink:href="#kyber" style="fill:hsl({{ product.metafields.custom.color.value.hue}},100%,5%);" ></use>
+                      </svg>
+                      {% else %}
+                      <svg class="c-star active"width="32" height="32" viewBox="0 0 512 512">
+                        <use xlink:href="#kyber-fill" style="fill:hsl({{ product.metafields.custom.color.value.hue  }},100%,10%);" ></use>
+                        <use xlink:href="#kyber" style="fill:hsl({{ product.metafields.custom.color.value.hue  }},100%,5%);" ></use>
+                      </svg>
+                      {% endif %}
+                    {% endfor %}
+                  </span>
                 </div>
                 <p class="rating-text caption">
                   <span aria-hidden="true">
@@ -625,7 +674,40 @@
       document.querySelector('#Variants-{{ section.id }}').addEventListener('change', function (event) {
         hiddenInput.value = event.currentTarget.value;
       });
+
+      const textElement = document.getElementById('animated-text');
+      const originalText = textElement.innerText;
+  
+      function getRandomLetter() {
+        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const randomIndex = Math.floor(Math.random() * alphabet.length);
+        return alphabet[randomIndex];
+      }
+  
+      function scrambleText() {
+        let newText = '';
+        for (let i = 0; i < originalText.length; i++) {
+          newText += getRandomLetter();
+        }
+        textElement.innerText = newText;
+      }
+  
+      function animateText() {
+        textElement.style.animation = 'scramble 1s forwards';
+  
+        setTimeout(function () {
+          textElement.innerText = originalText;
+          textElement.style.animation = 'none';
+        }, 1000);
+      }
+  
+      // Start the animation
+      setInterval(function () {
+        scrambleText();
+        animateText();
+      }, 2000); // Change the interval as needed
     });
+
   </script>
 
   {%- liquid
@@ -680,6 +762,7 @@
       ]
     }
   </script>
+  </div>
 </section>
 
 {% schema %}
@@ -726,6 +809,11 @@
     {
       "type": "title",
       "name": "t:sections.main-product.blocks.title.name",
+      "limit": 1
+    },
+    {
+      "type": "aurek_besh",
+      "name": "t:sections.main-product.blocks.aurek_besh.name",
       "limit": 1
     },
     {
@@ -858,6 +946,11 @@
       "limit": 1
     },
     {
+      "type": "short_description",
+      "name": "t:sections.main-product.metafields.custom.short_description.value",
+      "limit": 1
+    },
+    {
       "type": "share",
       "name": "t:sections.main-product.blocks.share.name",
       "limit": 1,
@@ -890,6 +983,7 @@
         }
       ]
     },
+    
     {
       "type": "collapsible_tab",
       "name": "t:sections.main-product.blocks.collapsible_tab.name",
@@ -2019,6 +2113,12 @@
       "id": "enable_sticky_info",
       "default": true,
       "label": "t:sections.main-product.settings.enable_sticky_info.label"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "background-1"
     },
     {
       "type": "header",
