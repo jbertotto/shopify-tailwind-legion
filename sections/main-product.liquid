@@ -196,7 +196,7 @@
             {%- when 'custom_liquid' -%}
               {{ block.settings.custom_liquid }}
             {%- when 'aurek_besh' -%}
-              <h2  id="animated-text" class="tw-aurek tw-text-sm tw-opacity-25 scramble-text">
+              <h2  class="tw-aurek tw-text-sm tw-opacity-25 ">
                 {{ product.metafields.custom.character }}
               </h2>
             {%- when 'collapsible_tab' -%}
@@ -675,38 +675,7 @@
         hiddenInput.value = event.currentTarget.value;
       });
 
-      const textElement = document.getElementById('animated-text');
-      const originalText = textElement.innerText;
-  
-      function getRandomLetter() {
-        const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const randomIndex = Math.floor(Math.random() * alphabet.length);
-        return alphabet[randomIndex];
-      }
-  
-      function scrambleText() {
-        let newText = '';
-        for (let i = 0; i < originalText.length; i++) {
-          newText += getRandomLetter();
-        }
-        textElement.innerText = newText;
-      }
-  
-      function animateText() {
-        textElement.style.animation = 'scramble 1s forwards';
-  
-        setTimeout(function () {
-          textElement.innerText = originalText;
-          textElement.style.animation = 'none';
-        }, 1000);
-      }
-  
-      // Start the animation
-      setInterval(function () {
-        scrambleText();
-        animateText();
-      }, 2000); // Change the interval as needed
-    });
+      
 
   </script>
 
