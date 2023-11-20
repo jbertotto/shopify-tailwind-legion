@@ -8,7 +8,7 @@ quantity-popover volume-pricing li:nth-child(odd) {
 }
 
 quantity-popover volume-pricing li {
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   letter-spacing: 0.06rem;
   padding: 0.6rem 0.8rem;
   display: flex;

@@ -5,6 +5,21 @@
     "footer": {
       "type": "footer",
       "blocks": {
+        "79a93483-d992-4556-a11a-af3f2fd3a2c8": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/legion_logo.svg",
+            "image_width": 220,
+            "alignment": "center"
+          }
+        },
+        "footer-2": {
+          "type": "text",
+          "settings": {
+            "heading": "Our mission",
+            "subtext": "<p>Share contact information, store details, and brand content with your customers.<\/p>"
+          }
+        },
         "footer-0": {
           "type": "link_list",
           "settings": {
@@ -18,24 +33,19 @@
             "heading": "Info",
             "menu": "footer"
           }
-        },
-        "footer-2": {
-          "type": "text",
-          "settings": {
-            "heading": "Our mission",
-            "subtext": "<p>Share contact information, store details, and brand content with your customers.<\/p>"
-          }
         }
       },
       "block_order": [
+        "79a93483-d992-4556-a11a-af3f2fd3a2c8",
+        "footer-2",
         "footer-0",
-        "footer-1",
-        "footer-2"
+        "footer-1"
       ],
       "settings": {
         "color_scheme": "background-1",
         "newsletter_enable": true,
         "newsletter_heading": "Subscribe to our emails",
+        "enable_follow_on_shop": true,
         "show_social": true,
         "enable_country_selector": false,
         "enable_language_selector": false,
