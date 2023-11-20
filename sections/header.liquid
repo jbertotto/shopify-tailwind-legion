@@ -182,7 +182,7 @@
 
       {% render 'header-search',
         input_id: 'Search-In-Modal',
-        class: ' tw-gap-1 tw-flex tw-h-10  tw-place-items-center hover:!tw-text-[rgb(var(--color-accent))] '
+        class: ' tw-gap-1 tw-flex tw-h-10  tw-place-items-center  hover:tw-scale-105 hover:tw-text-[rgb(var(--color-accent))] '
       %}
 
       {% # Account Icon %}
@@ -190,7 +190,7 @@
       {%- if shop.customer_accounts_enabled -%}
         <a
           href='{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}'
-          class='tw-h-10 tw-hidden lg:tw-flex tw-gap-1 tw-place-items-center hover:!tw-text-[rgb(var(--color-accent))] '
+          class='tw-h-10 tw-hidden lg:tw-flex tw-gap-2 tw-place-items-center hover:tw-scale-105 hover:tw-text-[rgb(var(--color-accent))] hover:tw-stroke-2 '
         >
           {% render 'icon-luke' %}
           <span class='tw-text-base'>
@@ -215,15 +215,15 @@
       {% # Cart Icon %}
       <a
         href='{{ routes.cart_url }}'
-        class=' tw-relative tw-gap-1 tw-flex tw-h-10 tw-place-items-center text-[rgb(var(--color-text))] hover:!tw-text-[rgb(var(--color-accent))] '
+        class=' tw-relative tw-gap-2 tw-flex tw-h-10 tw-place-items-center tw-w-fit hover:tw-scale-105 hover:tw-text-[rgb(var(--color-accent))] '
         id='cart-icon-bubble'
       >
         {%- render 'icon-sandcrawler' -%}
         {%- if cart != empty -%}
-          <span class='tw-absolute tw-inset-0 tw-object-right-top -tw-mr-6'>
+          <span class='tw-absolute tw-inset-0 tw-object-right-top -tw-mr-6 tw-text-current'>
             {%- if cart.item_count < 100 -%}
               <div
-                class='tw-inline-flex tw-items-center tw-px-1.5 tw-py-0.5  tw-rounded-full tw-text-xs tw-font-semibold tw-leading-4 tw-bg-[rgb(var(--color-accent))] '
+                class='tw-inline-flex tw-h-2 tw-w-2 tw-items-center tw-px-1.5 tw-py-0.5  tw-rounded-full tw-text-xs tw-font-semibold tw-leading-4 tw-bg-[rgb(var(--color-accent))] '
                 aria-hidden='true'
               >
                 {{ cart.item_count }}
@@ -232,7 +232,7 @@
             <span class='visually-hidden'>{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
           </span>
         {%- endif -%}
-        <span class='tw-text-base'>{{ 'templates.cart.cart' | t }}</span>
+        <span class='tw-text-base tw-hidden md:tw-block '>{{ 'templates.cart.cart' | t }}</span>
       </a>
     </div>
   </header>

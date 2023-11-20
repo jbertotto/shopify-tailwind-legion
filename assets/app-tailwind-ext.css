@@ -1,0 +1,7 @@
+.hover\:tw-text-\[rgb\(var\(--color-accent\)\)\]:hover {
+  color: rgb(var(--color-accent));
+}
+
+.tw-bg-\[rgb\(var\(--color-accent\)\)\] {
+  background-color: rgb(var(--color-accent));
+}
