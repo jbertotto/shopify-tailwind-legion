@@ -70,7 +70,7 @@ if (!customElements.get('product-info')) {
       fetchQuantityRules() {
         if (!this.currentVariant || !this.currentVariant.value) return;
         this.querySelector(
-          '.quantity__rules-cart .loading-overlay',
+          '.quantity__rules-cart .loading__spinner',
         ).classList.remove('hidden');
         fetch(
           `${this.dataset.url}?variant=${this.currentVariant.value}&section_id=${this.dataset.section}`,
@@ -91,7 +91,7 @@ if (!customElements.get('product-info')) {
           })
           .finally(() => {
             this.querySelector(
-              '.quantity__rules-cart .loading-overlay',
+              '.quantity__rules-cart .loading__spinner',
             ).classList.add('hidden');
           });
       }

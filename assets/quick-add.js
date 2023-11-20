@@ -21,9 +21,7 @@ if (!customElements.get('quick-add-modal')) {
       show(opener) {
         opener.setAttribute('aria-disabled', true);
         opener.classList.add('loading');
-        opener
-          .querySelector('.loading-overlay__spinner')
-          .classList.remove('hidden');
+        opener.querySelector('.loading__spinner').classList.remove('hidden');
 
         fetch(opener.getAttribute('data-product-url'))
           .then((response) => response.text())
@@ -35,6 +33,13 @@ if (!customElements.get('quick-add-modal')) {
             this.productElement = responseHTML.querySelector(
               'section[id^="MainProduct-"]',
             );
+            this.productElement.classList.forEach((classApplied) => {
+              if (
+                classApplied.startsWith('color-') ||
+                classApplied === 'gradient'
+              )
+                this.modalContent.classList.add(classApplied);
+            });
             this.preventDuplicatedIDs();
             this.removeDOMElements();
             this.setInnerHTML(this.modalContent, this.productElement.innerHTML);
@@ -53,9 +58,7 @@ if (!customElements.get('quick-add-modal')) {
           .finally(() => {
             opener.removeAttribute('aria-disabled');
             opener.classList.remove('loading');
-            opener
-              .querySelector('.loading-overlay__spinner')
-              .classList.add('hidden');
+            opener.querySelector('.loading__spinner').classList.add('hidden');
           });
       }
 

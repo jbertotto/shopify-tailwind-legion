@@ -177,7 +177,7 @@
 
     {%- render 'header-dropdown-menu' %}
 
-    <div class='tw-flex tw-gap-1 tw-justify-end '>
+    <div class='tw-flex tw-gap-4 tw-justify-end '>
       {% # Search Icon %}
 
       {% render 'header-search',
@@ -215,23 +215,25 @@
       {% # Cart Icon %}
       <a
         href='{{ routes.cart_url }}'
-        class=' tw-relative tw-gap-2 tw-flex tw-h-10 tw-place-items-center tw-w-fit hover:tw-scale-105 hover:tw-text-[rgb(var(--color-accent))] '
+        class='  tw-gap-2 tw-flex tw-h-10 tw-place-items-center tw-w-fit hover:tw-scale-105 hover:tw-text-accent  hover:tw-hover-cart '
         id='cart-icon-bubble'
       >
-        {%- render 'icon-sandcrawler' -%}
-        {%- if cart != empty -%}
-          <span class='tw-absolute tw-inset-0 tw-object-right-top -tw-mr-6 tw-text-current'>
-            {%- if cart.item_count < 100 -%}
-              <div
-                class='tw-inline-flex tw-h-2 tw-w-2 tw-items-center tw-px-1.5 tw-py-0.5  tw-rounded-full tw-text-xs tw-font-semibold tw-leading-4 tw-bg-[rgb(var(--color-accent))] '
-                aria-hidden='true'
-              >
-                {{ cart.item_count }}
-              </div>
-            {%- endif -%}
-            <span class='visually-hidden'>{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
-          </span>
-        {%- endif -%}
+        <div class='tw-relative '>
+          {%- render 'icon-sandcrawler' -%}
+          {%- if cart != empty -%}
+            <span class='tw-absolute tw-top-1 -tw-right-1 tw-text-current '>
+              {%- if cart.item_count < 100 -%}
+                <div
+                  class='tw-h-6 tw-w-6 tw-items-center tw-rounded-full tw-text-xs tw-font-semibold tw-bg-accent tw-text-text_color tw-cart-bubble tw-text-center'
+                  aria-hidden='true'
+                >
+                  {{ cart.item_count }}
+                </div>
+              {%- endif -%}
+              <span class='visually-hidden'>{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+            </span>
+          {%- endif -%}
+        </div>
         <span class='tw-text-base tw-hidden md:tw-block '>{{ 'templates.cart.cart' | t }}</span>
       </a>
     </div>

@@ -31,6 +31,7 @@ module.exports = {
     extend: {
       fontFamily: {
         heading: 'var(--font-heading-family)',
+        aurek: 'Aurek Besh',
       },
       strokeWidth: {
         1: ' 1.6rem',
@@ -43,9 +44,17 @@ module.exports = {
       width: {
         icon: '3.2rem',
       },
-    },
-    color: {
-      black: '#000000',
+      colors: {
+        background: 'rgb(var(--color-background))',
+        foreground: 'rgb(var(--color-foreground))',
+        background_gradient: 'rgb(var(--gradient-background))',
+        text_color: 'rgb(var(--color-foreground))',
+        button: 'rgb(var(--color-button))',
+        button_label: 'rgb(var( --color-button-text))',
+        secondary_button_label: 'rgb(var(--color-secondary-button-text))',
+        accent: 'rgb(var(--color-accent))',
+        shadow: 'rgb(var(--color-shadow))',
+      },
     },
   },
   plugins: [],

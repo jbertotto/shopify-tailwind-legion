@@ -217,7 +217,7 @@ class CartItems extends HTMLElement {
         });
       })
       .catch(() => {
-        this.querySelectorAll('.loading-overlay').forEach((overlay) =>
+        this.querySelectorAll('.loading__spinner').forEach((overlay) =>
           overlay.classList.add('hidden'),
         );
         const errors =
@@ -262,10 +262,10 @@ class CartItems extends HTMLElement {
     mainCartItems.classList.add('cart__items--disabled');
 
     const cartItemElements = this.querySelectorAll(
-      `#CartItem-${line} .loading-overlay`,
+      `#CartItem-${line} .loading__spinner`,
     );
     const cartDrawerItemElements = this.querySelectorAll(
-      `#CartDrawer-Item-${line} .loading-overlay`,
+      `#CartDrawer-Item-${line} .loading__spinner`,
     );
 
     [...cartItemElements, ...cartDrawerItemElements].forEach((overlay) =>
@@ -283,10 +283,10 @@ class CartItems extends HTMLElement {
     mainCartItems.classList.remove('cart__items--disabled');
 
     const cartItemElements = this.querySelectorAll(
-      `#CartItem-${line} .loading-overlay`,
+      `#CartItem-${line} .loading__spinner`,
     );
     const cartDrawerItemElements = this.querySelectorAll(
-      `#CartDrawer-Item-${line} .loading-overlay`,
+      `#CartDrawer-Item-${line} .loading__spinner`,
     );
 
     cartItemElements.forEach((overlay) => overlay.classList.add('hidden'));

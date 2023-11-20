@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.tw-cart-bubble {
+  outline-width: 0px;
+  outline-color: rgb(var(--color-background));
+  outline-style: solid;
+}
+
+.hover\:tw-hover-cart:hover .tw-cart-bubble {
+  outline-width: 0.2rem;
+}
+
+@font-face {
+  font-family: 'Aurek Besh';
+  src: url('AurekBesh.woff') format('woff');
+  font-style: normal;
+}
