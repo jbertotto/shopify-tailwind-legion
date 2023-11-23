@@ -1,7 +1,7 @@
 {
   "current": {
     "logo": "shopify:\/\/shop_images\/HeaderLogo.svg",
-    "logo_width": 200,
+    "logo_width": 170,
     "type_header_font": "inter_n4",
     "heading_scale": 100,
     "type_body_font": "inter_n4",
@@ -173,7 +173,7 @@
           "background_gradient": "",
           "text": "#121212",
           "button": "#121212",
-          "accent": "#0C5DDF",
+          "accent": "#0c5ddf",
           "button_label": "#000000",
           "secondary_button_label": "#121212",
           "shadow": "#ffffff"
@@ -185,7 +185,7 @@
           "background_gradient": "",
           "text": "#121212",
           "button": "#121212",
-          "accent": "#0C5DDF",
+          "accent": "#0c5ddf",
           "button_label": "#ffffff",
           "secondary_button_label": "#121212",
           "shadow": "#ffffff"
@@ -197,7 +197,7 @@
           "background_gradient": "",
           "text": "#121212",
           "button": "#121212",
-          "accent": "#0C5DDF",
+          "accent": "#0c5ddf",
           "button_label": "#334fb4",
           "secondary_button_label": "#121212",
           "shadow": "#ffffff"
